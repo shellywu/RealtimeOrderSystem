@@ -1,0 +1,127 @@
+﻿@model OrderSystem.Core.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>详情</h2>
+
+<div>
+    <h4>订单</h4>
+    <hr />
+    <div class="panel panel-info">
+        <div class="panel-heading">客户信息</div>
+        <div class="panel-body">
+            <div class="row">
+                <label class="col-md-2">客户名称</label>
+                <div class="col-md-2">@Html.DisplayFor(model => model.Customer.CName)</div>
+                <label class="col-md-2">手机号码</label>
+                <div class="col-md-2">@Html.DisplayFor(model => model.Customer.CPhone)</div>
+                <label class="col-md-2">会员等级</label>
+                <div class="col-md-4">@Html.DisplayFor(model => model.Customer.Level)</div>
+            </div>
+            <div class="row">
+                <label class="col-md-2">证件码</label>
+                <div class="col-md-2">@Html.DisplayFor(model => model.Customer.CIdentity)</div>
+                <label class="col-md-2">证件类型</label>
+                <div class="col-md-2">@Html.DisplayFor(model => model.Customer.IdentityType)</div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">订单信息</div>
+        <div class="panel-body">
+            <div class="row">
+                <label class="col-md-2">订单编码</label>
+                <div class="col-md-4">@Html.DisplayFor(model => model.OrderCode)</div>
+                <label class="col-md-2">订单状态</label>
+                <div class="col-md-4">@Html.DisplayFor(model => model.OrderStatus)</div>
+            </div>
+            <dia class="row">
+                <label class="col-md-2">下单日期</label>
+                <div class="col-md-4 pull-left">@Html.DisplayFor(model => model.OrderDate)</div>
+                <label class="col-md-2">备注</label>
+                <div class="col-md-4 pull-left">@Html.DisplayFor(model => model.Remark)</div>
+            </dia>
+        </div>
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-heading">订单项信息</div>
+        <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>产品编码</td>
+                            <td>产品类型</td>
+                            <td>开始日期</td>
+                            <td>结束日期</td>
+                            <td>预定数量</td>
+                            <td>概要描述</td>
+                            <td>总价</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var items = ViewBag.ois as List<OrderSystem.Core.Models.OrderItem>;
+                            foreach (var item in items)
+                            {
+                        <tr>
+                            <td>@item.ProductId</td>
+                            <td>@item.ProductType</td>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Describe</td>
+                            <td>@item.TotalPrice</td>
+                        </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+        </div>
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-heading">任务分配详情</div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>任务编码</td>
+                        <td>产品名称</td>
+                        <td>产品类型</td>
+                        <td>产品数量</td>
+                        <td>任务状态</td>
+                        <td>领单人</td>
+                        <td>领单时间</td>
+                        <td>完成时间</td>
+                        <td>备注</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var tasks = ViewBag.tom as List<OrderSystem.Core.Models.TaskOrderModel>;
+                        foreach (var item in tasks)
+                        {
+                            <tr>
+                                <td>@item.TaskCode</td>
+                                <td>@item.ProductName</td>
+                                <td>@item.ProductType</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.State</td>
+                                <td>@item.TakePerson</td>
+                                <td>@item.TakeDate</td>
+                                <td>@item.CompleteDate</td>
+                                <td>@item.TaskRemark</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<p>
+    @Html.ActionLink("返回", "Index")
+</p>

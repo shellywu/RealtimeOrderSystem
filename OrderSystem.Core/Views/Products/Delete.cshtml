@@ -1,0 +1,137 @@
+﻿@model OrderSystem.Core.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Partner.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Partner.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Spot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Spot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValidStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValidStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValidEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValidEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NeedFeedBack)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NeedFeedBack)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Settlement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Settlement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cons)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cons)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

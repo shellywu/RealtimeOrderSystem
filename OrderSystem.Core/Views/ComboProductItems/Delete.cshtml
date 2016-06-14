@@ -1,0 +1,81 @@
+﻿@model OrderSystem.Core.Models.ComboProductItem
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>删除</h2>
+
+<h3>确定要删除吗？</h3>
+<div>
+    <h4>ComboProductItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            套餐编码
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComboProduct.ComboCode)
+        </dd>
+
+        <dt>
+            产品名称
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+
+        <dt>
+            数量
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            售价
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+
+        <dt>
+            返点
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCommision)
+        </dd>
+
+        <dt>
+            结算价
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductSettlement)
+        </dd>
+
+        <dt>
+            合同价
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductContractPrice)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回套餐", "Index", new { id=ViewBag.cid,pid=ViewBag.pid})
+        </div>
+    }
+</div>

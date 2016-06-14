@@ -1,0 +1,91 @@
+﻿@model OrderSystem.Core.Models.ComboProduct
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ComboProduct</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ComboCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComboCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComboName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComboName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValidStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValidStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValidEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValidEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCommision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCommision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductSettlement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductSettlement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductContractPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductContractPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

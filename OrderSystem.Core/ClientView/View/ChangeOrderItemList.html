@@ -1,0 +1,131 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{item.customerInfo}}</h3>
+    <h3 class="modal-title" ng-show="listScreen">{{item.customerInfo}}</h3>
+</div>
+<div class="modal-body">
+    <div ng-show="listScreen">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>订单项描述</td>
+                    <td>预计日期从</td>
+                    <td>截止</td>
+                    <td>数量</td>
+                    <td>产品类型</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in orderItems">
+                    <td>{{item.describe}}</td>
+                    <td>{{item.startDate|date:'yyyy-MM-dd'}}</td>
+                    <td>{{item.endDate|date:'yyyy-MM-dd'}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.productType|productType}}</td>
+                    <td><a class="btn btn-primary btn-sm" ng-show="item.state==0" ng-click="editChangeOrder(item.id)">编辑订单</a><span ng-show="item.state==1">已修改过订单</span></td>
+                </tr>
+                <tr ng-show="orderList.length==0"><td colspan="6">没有此订单</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="!listScreen">
+        <h4>{{item.describe}}&nbsp;&nbsp;&nbsp;总价：<label class="text-danger">{{item.totalPrice}}={{item.quantity}}*{{item.totalPrice/item.quantity}}</label></h4>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-4 form-inline">
+                <div class="form-group">
+                    <label>预定数量</label>
+                    <input type="number" class="form-control" readonly="readonly" ng-model="item.quantity" />
+                </div>
+            </div>
+            <div class="col-md-4 form-inline">
+                <div class="form-group">
+                    <label>券号</label>
+                    <input class="form-control" ng-model="item.certificateNum">
+                </div>
+            </div>
+            <div class="col-md-4 form-inline">
+                <div class="form-group">
+                    <label>验证时间</label>
+                    <input class="form-control" ng-model="item.certificateDate" />
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-6 form-inline">
+                <div class="form-group pull-left">
+                    <label>使用日期</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="item.startDate" ng-change="changeEndDate()" is-open="status.startOpened" min-date="sminDate" max-date="smaxDate" datepicker-options="dateOptions" ng-required="true" close-text="关闭" current-text="今天" clear-text="清除" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="startOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group form-inline">
+                    <label>结束日期</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="item.endDate" is-open="status.endOpened" min-date="item.startDate" max-date="emaxDate" datepicker-options="dateOptions" ng-required="true" close-text="关闭" current-text="今天" clear-text="清除" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="endOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>备注信息</label>
+                    <textarea class="form-control" cols="120" rows="4" ng-model="item.remark"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pull-left">
+                <h4>添加产品使用人信息</h4>
+            </div>
+            <div class="col-md-6 pull-right">
+                <button class="btn btn-primary btn-sm" ng-click="addUser()">添加</button>
+            </div>
+            <table class="table table-responsive">
+                <tr>
+                    <th>使用人姓名</th>
+                    <th>联系方式</th>
+                    <th>证件号码</th>
+                    <th>证件类型</th>
+                    <th>操作</th>
+                </tr>
+                <tr ng-repeat="productUser in item.persons">
+                    <td>
+                        <input type="text" class="form-control" ng-model="productUser.personName" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-model="productUser.personPhone" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-model="productUser.personIdentity" />
+                    </td>
+                    <td>
+                        <select class="form-control" ng-model="productUser.credentialType" ng-options="it.value as it.name for it in identityTypes"></select>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="deleteUser(productUser.index)">删除</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <div ng-show="listScreen">
+        <button class="btn btn-warning" ng-click="cancel()">取消</button>
+    </div>
+    <div ng-show="!listScreen">
+        <button class="btn btn-primary" ng-click="changeOrderItem()">
+            确认修改
+        </button>
+    </div>
+</div>

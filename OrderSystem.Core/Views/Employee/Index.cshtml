@@ -1,0 +1,58 @@
+﻿@model IEnumerable<OrderSystem.Core.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>员工列表</h2>
+
+<p>
+    @Html.ActionLink("新建员工", "Create")
+</p>
+<table class="table">
+    <tr>
+        <td>
+            姓名
+        </td>
+        <td>
+            手机号
+        </td>
+        <td>
+            角色
+        </td>
+        <td>
+           邮箱/登录名
+        </td>
+        <td>
+            银行账户
+        </td>
+        <td>
+            操作
+        </td>
+    </tr>
+  @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeInfo.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Roles)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem=>item.EmployeeInfo.AccountNumber)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

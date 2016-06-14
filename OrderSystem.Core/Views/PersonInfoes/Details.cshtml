@@ -1,0 +1,67 @@
+﻿@model OrderSystem.Core.Models.PersonInfo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PersonInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Orderitem.ProductId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Orderitem.ProductId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonIdentity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonIdentity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CredentialType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CredentialType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remark)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

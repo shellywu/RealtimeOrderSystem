@@ -1,0 +1,55 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">订单详情</h3>
+</div>
+<div class="modal-body">
+        <h4>订单项内容如下</h4>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>产品名称</td>
+                    <td>产品类型</td>
+                    <td>下单数量</td>
+                    <td>总价</td>
+                    <td>券号</td>
+                    <td>验证时间</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="p in orderItems">
+                    <td>{{p.describe}}</td>
+                    <td>{{p.productType}}</td>
+                    <td>{{p.quantity}}</td>
+                    <td>{{p.totalPrice}}</td>
+                    <td>{{p.certificateNum}}</td>
+                    <td>{{p.certificateDate|date:'yyyy-MM-dd hh-mm'}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>订单状态</h4>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>任务名称</td>
+                    <td>任务状态</td>
+                    <td>关联产品</td>
+                    <td>备注</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="t in tasks">
+                    <td>{{t.taskCode}}</td>
+                    <td>{{t.state|taskState}}</td>
+                    <td>{{t.productName}}</td>
+                    <td>{{t.taskRemark}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="cancelOrder()">
+        退单
+    </button>
+    <button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>
+
+

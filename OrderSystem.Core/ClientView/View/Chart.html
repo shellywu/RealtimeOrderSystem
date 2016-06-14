@@ -1,0 +1,49 @@
+﻿
+<div class="panel panel-primary">
+
+    <div class="panel-heading">短信板<a title="收缩" ng-click="minChat()"><span ng-show="showchart">>>></span> <span ng-show="!showchart"><<<</span></a></div>
+    <div class="panel-body" ng-controller="ChartCtrl">
+        <ul class="nav nav-tabs">
+            <li ng-class="currentTab==1?'active':''"><a ng-show="showchart" style="text-decoration:none;" ng-click="activeTab(1)">短信发送</a></li>
+            <li ng-class="currentTab==2||!showchart?'active':''"><a data-toggle="tab" ng-click="activeTab(2)">客户短信池</a> </li>
+        </ul>
+        <div class="tab-content">
+            <div id="chart" class="tab-pane" ng-class="currentTab==1&&showchart?'active':''" ng-show="currentTab==1&&showchart">
+                <div class="col-md-12" style="height:350px;">
+                    <ul style="list-style:none">
+                        <li ng-repeat="msg in messageResults ">
+                            <span>{{msg.from}}：{{msg.content}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group col-md-9 form-inline">
+                            <label class="sr-only">手机号：</label>
+                            <input class="form-control" ng-model="phone" placeholder="手机号" />
+                        </div>
+                        <div class="form-group col-md-9  form-inline">
+                            <label class="sr-only">内容：</label>
+                            <textarea class="form-control" ng-model="message" placeholder="发送内容" style="width:90%" ></textarea>
+                        </div>
+                        <div class="form-group col-md-2 pull-right">
+                            <input type="button" class="btn btn-primary btn-sm" ng-click="sendMessge()" value="发送" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="chatGrounp" ng-class="currentTab==2||!showchart?'active':''" ng-show="currentTab==2||!showchart" class="tab-pane">
+                <ul style="list-style:none">
+                    <li>123</li>
+                    <li>234</li>
+                    <li>345</li>
+                    <li>456</li>
+                    <li>678</li>
+                    <li>789</li>
+                    <li>123</li>
+                    <li>123</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

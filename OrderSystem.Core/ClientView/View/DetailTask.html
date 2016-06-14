@@ -1,0 +1,77 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">任务号{{task.id}}详情</h3>
+
+</div>
+<div class="modal-body">
+    <h4>产品信息如下</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <label>产品名称:</label>
+            <label>{{task.productName}}</label>
+        </div>
+        <div class="col-md-4">
+            <label>产品编码:</label>
+            <label>{{task.productCode}}</label>
+        </div>
+        <div class="col-md-4">
+            <label>预定数量:</label>
+            <label>{{task.quantity}}</label>
+        </div>
+        <div class="col-md-4">
+            <label class="col-md-4">使用日期</label>
+            <p class="col-md-8">
+                {{task.usedStartDate|date:'yyyy-MM-dd hh:mm'}}
+            </p>
+        </div>
+        <div class="col-md-4">
+            <label class="col-md-4">结束日期</label>
+            <p class="col-md-8">
+                {{task.usedEndDate|date:'yyyy-MM-dd hh:mm'}}
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <h4>使用者信息</h4>
+        <table class="table">
+            <tr>
+                <th>姓名</th>
+                <th>身份证</th>
+                <th>联系电话</th>
+            </tr>
+            <tr ng-repeat="user in task.personinfos">
+                <td>{{user.personName}}</td>
+                <td>{{user.personIdentity}}</td>
+                <td>{{user.personPhone}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <h4>订单反馈</h4>
+        <div class="col-md-12">
+            <textarea ng-model="remark"class="form-control" style="width:80%;"></textarea>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-show="step==1||step==4" ng-click="checkin(task.id)">
+        领取
+    </button>
+    <button class="btn btn-primary" ng-show="step==2" ng-click="finish(task.id)">
+        下单完成
+    </button>
+    <button class="btn btn-primary" ng-show="step==2" ng-click="errOrder(task.id)">
+        下单失败
+    </button>
+    <button class="btn btn-primary" ng-show="step==8" ng-click="cancelin(task.id)">
+        领取退单
+    </button>
+    <button class="btn btn-primary" ng-show="step==9" ng-click="canceled(task.id)">
+        退单完成
+    </button>
+    <button class="btn btn-primary" ng-show="step==9" ng-click="cancelerr(task.id)">
+        退单失败
+    </button>
+    <button class="btn btn-warning" ng-show="step==1||step==8" ng-click="cancel()">取消</button>
+</div>
+
+

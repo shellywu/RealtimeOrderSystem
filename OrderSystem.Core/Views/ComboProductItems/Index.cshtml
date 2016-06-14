@@ -1,0 +1,79 @@
+﻿@model IEnumerable<OrderSystem.Core.Models.ComboProductItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("添加产品", "Create", new { id = ViewBag.ComboProductId })
+</p>
+<table class="table">
+    <tr>
+        <th>
+           套餐编码
+        </th>
+        <th>
+           产品名称
+        </th>
+        <th>
+           包含数量
+        </th>
+        <th>
+            单件价格
+        </th>
+        <th>
+            单件返点
+        </th>
+        <th>
+            单件佣金
+        </th>
+        <th>
+           单件结算价
+        </th>
+        <th>
+           单件合同价
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComboProduct.ComboCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCommision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Borkerage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductSettlement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductContractPrice)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new {  id=item.ComboProductId,pid=item.ProductId }) |
+            @Html.ActionLink("详情", "Details", new { id = item.ComboProductId, pid = item.ProductId }) |
+            @Html.ActionLink("删除", "Delete", new { id = item.ComboProductId, pid = item.ProductId })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("返回套餐", "Index", "ComboProducts");
+</p>

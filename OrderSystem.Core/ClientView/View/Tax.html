@@ -1,0 +1,75 @@
+﻿<div ng-controller="TaxCtrl">
+    <ul class="nav nav-tabs">
+        <li ng-class="currentTab==1?'active':''"><a aria-controls="taskList" role="tab" data-toggle="tab" ng-click="activeTab('1')">任务单</a></li>
+        <li ng-class="currentTab==2?'active':''"><a aria-controls="myTasks" role="tab" data-toggle="tab" ng-click="activeTab('2')">我的任务</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" ng-class="currentTab==1?'active':''" ng-show="currentTab==1?true:false" id="taskList">
+            <table class="table">
+                <tr>
+                    <th>操作</th>
+                    <th>任务状态</th>
+                    <th>任务编码</th>
+                    <th>产品编码</th>
+                    <th>产品名称</th>
+                    <th>预定数量</th>
+                    <th>下单时间</th>
+                    <th>任务来源</th>
+                    <th>备注</th>
+                </tr>
+                <tr ng-repeat="task in tasks">
+                    <td>
+                        <a ng-click="openTaskDialog(task.id,task.state,false)" ng-show="task.state==0">领取订单</a>
+                        <a ng-click="openTaskDialog(task.id,task.state,false)" ng-show="task.state==3">领取变更单</a>
+                        <a ng-show="task.state==7" ng-click="openTaskDialog(task.id,task.state,false)">领取退单</a>
+                    </td>
+                    <td>{{task.state|taskState}}</td>
+                    <td>{{task.id}}</td>
+                    <td>{{task.productCode}}</td>
+                    <td>{{task.productName}}</td>
+                    <td>{{task.quantity}}</td>
+                    <td>{{task.createDate|date:'yyyy-MM-dd hh:mm'}}</td>
+                    <td>{{task.productFrom}}</td>
+                    <td>{{task.remark}}</td>
+                </tr>
+            </table>
+            <ul class="pagination pagination-sm">
+                <li ng-class="taskListCurrentPage==1?'disabled':''"><a ng-click="prePageData()"><span aria-hidden="true">&laquo;</span></a></li>
+                <li ng-repeat="item in  pageList" ng-class="taskListCurrentPage==item?'active':''"><a ng-click="getPageData(item)">{{item}}</a></li>
+                <li ng-class="taskListCurrentPage==pageCount?'disabled':''"><a ng-click="nextPageData()"><span aria-hidden="true">&raquo;</span></a></li>
+            </ul>
+        </div>
+        <div class="tab-pane" ng-class="currentTab==2?'active':''" ng-show="currentTab==2?true:false" id="myTasks">
+            <table class="table">
+                <tr>
+                    <th>操作</th>
+                    <th>任务状态</th>
+                    <th>任务编码</th>
+                    <th>产品编码</th>
+                    <th>产品名称</th>
+                    <th>预定数量</th>
+                    <th>下单时间</th>
+                    <th>任务来源</th>
+                    <th>备注</th>
+                </tr>
+                <tr ng-repeat="task in myTasks">
+                    <td><a ng-show="task.state==1||task.state==8" ng-click="openTaskDialog(task.id,task.state,true)">继续处理</a></td>
+                    <td>{{task.state|taskState}}</td>
+                    <td>{{task.id}}</td>
+                    <td>{{task.productCode}}</td>
+                    <td>{{task.productName}}</td>
+                    <td>{{task.quantity}}</td>
+                    <td>{{task.createDate|date:'yyyy-MM-dd hh:mm'}}</td>
+                    <td>{{task.productFrom}}</td>
+                    <td>{{task.remark}}</td>
+                    <td></td>
+                </tr>
+            </table>
+            <ul class="pagination pagination-sm">
+                <li ng-class="taskListMyCurrentPage==1?'disabled':''"><a ng-click="preMyPageData()"><span aria-hidden="true">&laquo;</span></a></li>
+                <li ng-repeat="item in  pageMyList" ng-class="taskListMyCurrentPage==item?'active':''"><a ng-click="getMyPageData(item)">{{item}}</a></li>
+                <li ng-class="taskListMyCurrentPage==myPageCount?'disabled':''"><a ng-click="nextMyPageData()"><span aria-hidden="true">&raquo;</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>

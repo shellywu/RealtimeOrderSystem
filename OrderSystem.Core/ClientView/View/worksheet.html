@@ -1,0 +1,16 @@
+﻿<div class="panel panel-info" ng-controller="TaskAdapterCtrl">
+    <div class="panel-heading" style="padding-bottom:0px;">
+        <ul class="nav nav-tabs">
+            <li ng-repeat="tab in tabs" ng-class="currentTab=={{tab.index}}?'active':''"><a aria-controls="{{tab.id}}" role="tab" data-trigger="tab" ng-click="activeTab(tab.index)">{{tab.name}}</a></li>
+        </ul>
+    </div>
+    <div class="panel-body">
+        <div class="tab-content">
+            <div class="tab-pane" ng-repeat="tab in tabs" ng-class="currentTab=={{tab.index}}?'active':''" ng-show="currentTab=={{tab.index}}?true:false" id="{{tab.id}}">
+                <div ng-include="tab.template"></div>
+            </div>
+        </div>
+    </div>
+    <div><label ng-bind="state"></label></div>
+</div>
+<audio id="notify" autoplay="autoplay"></audio>

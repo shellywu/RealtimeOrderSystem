@@ -1,0 +1,34 @@
+﻿@model IEnumerable<OrderSystem.Core.Models.TaskViewModel>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>任务编号</td>
+            <td>任务状态</td>
+            <td>产品类型</td>
+            <td>产品数量</td>
+            <td>订单编码</td>
+            <td>生成日期</td>
+            <td>领取人</td>
+            <td>领取时间</td>
+            <td>完成时间</td>
+            <td>备注</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.TaskCode)</td>
+                <td>@Html.DisplayFor(modelItem => item.State)</td>
+                <td>@Html.DisplayFor(modelItem => item.ProductType)</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.OrderCode)</td>
+                <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.TakePerson)</td>
+                <td>@Html.DisplayFor(modelItem => item.TakeDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.CompleteDate)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,75 @@
+﻿@model OrderSystem.Core.Models.ComboProductItem
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ComboProductItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ComboProduct.ComboCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComboProduct.ComboCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCommision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCommision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductSettlement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductSettlement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductContractPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductContractPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

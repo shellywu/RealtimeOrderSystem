@@ -1,0 +1,128 @@
+﻿@model IEnumerable<OrderSystem.Core.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("新建", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            产品编码
+        </th>
+        <th>
+            渠道
+        </th>
+        <th>
+            供应商
+        </th>
+        <th>
+            产品名称
+        </th>
+        <th>
+            产品类型
+        </th>
+        <th>
+            城市
+        </th>
+        <th>
+            景点
+        </th>
+        <th>
+            有效期
+        </th>
+        <th>
+            有效期止
+        </th>
+
+        <th>
+            是否回执
+        </th>
+        <th>
+            售价
+        </th>
+
+        <th>
+            佣金
+        </th>
+        <th>
+            返点
+        </th>
+        <th>
+            结算价
+        </th>
+        <th>
+            合同价
+        </th>
+        <th>
+            会员积分
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Partner.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supplier.SupplierName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Spot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValidStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValidEndDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NeedFeedBack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Borkerage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commision)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Settlement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cons)
+            </td>
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("详情", "Details", new { id = item.Id }) |
+                @Html.ActionLink("删除", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

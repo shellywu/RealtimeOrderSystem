@@ -1,0 +1,182 @@
+﻿@model IEnumerable<OrderSystem.Core.Models.Order>
+
+@{
+    ViewBag.Title = "查询订单";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <label class="text-info">@ViewBag.Title</label>
+    </div>
+    <div class="panel-body">
+        <div class="panel panel-warning  col-md-12">
+            @using (Html.BeginForm("Index", "Orders", FormMethod.Post, new { @class = "form-inline" }))
+            {
+
+                <div style="padding-top:20px;padding-bottom:20px;">
+                    <div class="form-group pull-left">
+                        <label for="orderCode" class="control-label">订单编码</label>
+                        <input type="text" id="orderCode" placeholder="订单编码" class="form-control" name="OrderCode" />
+                    </div>
+                    <div class="form-group  pull-left">
+                        <label class="control-label" for="orderStatus">订单状态：</label>
+                        <select name="Status" id="orderStatus" class="form-control">
+                            <option value="0">未领取</option>
+                            <option value="1">已领取</option>
+                            <option value="2">处理中</option>
+                            <option value="3">下单失败</option>
+                            <option value="5">部分完成</option>
+                            <option value="6">下单失败</option>
+                            <option value="7">取消</option>
+                            <option value="8">取消中</option>
+                            <option value="9">取消完成</option>
+                            <option value="10">取消失败</option>
+                            <option value="888">意外订单</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group pull-left">
+                        <label class="control-label">客户手机：</label>
+                        <input type="text" placeholder="客户手机" class="form-control" name="CPhone" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">下单日期 从：</label>
+                        <input type="text" id="startDate" class="form_datetime" name="OrderStartDate" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">到：</label>
+                        <input type="text" class="form_datetime" id="endDate" name="OrderEndDate" />
+                    </div>
+                    <input type="hidden" name="PageIndex" id="pageIndex" value="1">
+                    <input type="hidden" name="PageSize" value="8">
+                    <input type="hidden" name="currentIndex" id="curIndex" value="@ViewBag.PageIndex">
+                    <input type="submit" class="btn btn-default" id="orderSearch" value="查询" />
+                </div>
+
+            }
+        </div>
+
+        <table class="table">
+            <tr>
+                <th>
+                    订单号
+                </th>
+                <th>
+                    下单日期
+                </th>
+                <th>
+                    完成日期
+                </th>
+                <th>
+                    订单状态
+                </th>
+                <th>
+                    备注
+                </th>
+                <th>操作</th>
+            </tr>
+            <tbody id="query-table">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ComplteDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Remark)
+                        </td>
+                        <td>
+                            @Html.ActionLink("详情", "Details", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <div>
+            <ul class="pagination" id="page">
+                @{
+                    string className = "";
+                    if (ViewBag.PageIndex == 1)
+                    {
+                        className = "disabled";
+                    }
+
+                }
+                <li class="@className"><a onclick="getPreData()"><span>&laquo;</span></a></li>
+                @for (int i = 1; i <= ViewBag.PageCount; i++)
+                {
+                    if (i == ViewBag.PageIndex)
+                    {
+                        <li class="active"><a>@i</a></li>
+                    }
+                    else
+                    {
+                        <li><a onclick="getdata(@i)">@i</a></li>
+                    }
+                    if (i > 10)
+                    {
+                        <li><a>…</a></li>
+                        break;
+                    }
+                }
+                <li class="@ViewBag.PageIndex==ViewBag.PageCount?''disabled':''"><a onclick="getNexData()"><span>&raquo;</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+
+        var getdata = function (id) {
+            $("#pageIndex").val(id);
+            $("#orderSearch").click();
+        }
+
+        var getPreData = function () {
+            var cindex = $("#curIndex").val();
+            if (cindex == 1) {
+
+            }
+            else {
+                getdata(cindex - 1);
+            }
+        }
+
+        var getNexData = function () {
+            var cindex = $("#curIndex").val();
+            if (cindex == 1) {
+
+            }
+            else {
+                getdata(cindex + 1);
+            }
+        }
+
+        var initControl = function () {
+            $(".form_datetime").datetimepicker({
+                format: "yyyy-mm-dd",
+                minView: "month",
+                autoclose: true,
+                language:"zh-CN"
+            });
+        }
+
+        $(function () {
+            initControl();
+        });
+
+    </script>
+}
+

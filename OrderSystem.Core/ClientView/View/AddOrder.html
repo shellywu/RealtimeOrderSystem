@@ -1,0 +1,107 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{item.customerInfo}}</h3>
+
+</div>
+<div class="modal-body">
+    <h4>{{item.product.name}}&nbsp;&nbsp;&nbsp;总价：<label class="text-danger">{{item.orderItem.totalPrice}}={{item.orderItem.quantity}}*{{item.orderItem.customerPrice}}</label></h4>
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-4 form-inline">
+            <div class="form-group">
+                <label>预定数量</label>
+                <input type="number" class="form-control" ng-change="{{item.orderItem.totalPrice=item.orderItem.quantity*item.orderItem.customerPrice }}" ng-model="item.orderItem.quantity" />
+            </div>
+        </div>
+        <div class="col-md-4 form-inline">
+            <div class="form-group">
+                <label>券号</label>
+                <input class="form-control" ng-model="item.orderItem.certificateNum">
+            </div>
+        </div>
+        <div class="col-md-4 form-inline">
+            <div class="form-group">
+                <label>售价</label>
+                <input class="form-control" ng-model="item.orderItem.customerPrice">
+            </div>
+        </div>
+        <div class="col-md-4 form-inline">
+            <div class="form-group">
+                <label>验证时间</label>
+                <input class="form-control" ng-model="item.orderItem.certificateDate" />
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-6 form-inline">
+            <div class="form-group pull-left">
+                <label>使用日期</label>
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="item.orderItem.startDate" ng-change="changeEndDate()" is-open="status.startOpened" min-date="sminDate" max-date="smaxDate" datepicker-options="dateOptions" ng-required="true" close-text="关闭" current-text="今天" clear-text="清除" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="startOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group form-inline">
+                <label>结束日期</label>
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="item.orderItem.endDate" is-open="status.endOpened" min-date="item.orderItem.startDate" max-date="emaxDate" datepicker-options="dateOptions" ng-required="true" close-text="关闭" current-text="今天" clear-text="清除" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="endOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>备注信息</label>
+                <textarea class="form-control" cols="120" rows="4" ng-model="item.orderItem.remark"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 pull-left">
+            <h4>添加产品使用人信息</h4>
+        </div>
+        <div class="col-md-6 pull-right">
+            <button class="btn btn-primary btn-sm" ng-click="addUser()">添加</button>
+        </div>
+        <table class="table table-responsive">
+            <tr>
+                <th>使用人姓名</th>
+                <th>联系方式</th>
+                <th>证件号码</th>
+                <th>证件类型</th>
+                <th>操作</th>
+            </tr>
+            <tr ng-repeat="productUser in item.productUsers">
+                <td>
+                    <input type="text" class="form-control" ng-model="productUser.personName" />
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="productUser.personPhone" />
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="productUser.personIdentity" />
+                </td>
+                <td>
+                    <select class="form-control" ng-model="productUser.credentialType" ng-options="it.value as it.name for it in identityTypes"></select>
+                </td>
+                <td>
+                    <button class="btn btn-danger" ng-click="deleteUser(productUser.index)">删除</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">
+        确认
+    </button>
+    <button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>
+
+

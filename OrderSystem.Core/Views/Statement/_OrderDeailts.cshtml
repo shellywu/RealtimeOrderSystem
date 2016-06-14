@@ -1,0 +1,25 @@
+﻿@model IEnumerable<OrderSystem.Core.Models.Order>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>订单编号</td>
+                <td>订单状态</td>
+                <td>下单日期</td>
+                <td>下单人</td>
+                <td>下单人联系方式</td>
+                <td>备注</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.OrderCode)</td>
+                    <td>@Html.DisplayFor(modelItem => item.OrderStatus)</td>
+                    <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Customer.CName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Customer.CPhone)</td>
+                </tr>
+            }
+        </tbody>
+    </table>

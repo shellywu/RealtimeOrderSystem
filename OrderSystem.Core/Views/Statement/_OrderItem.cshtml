@@ -1,0 +1,55 @@
+﻿@model List<OrderSystem.Core.Models.OrderItemModel>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>预定日期</td>
+            <td>订单类型</td>
+            <td>景区名称</td>
+            <td>使用日期</td>
+            <td>结束使用</td>
+            <td>客人姓名</td>
+            <td>联系方式</td>
+            <td>订单来源</td>
+            <td>券号/密码</td>
+            <td>数量</td>
+            <td>验证时</td>
+            <td>售价</td>
+            <td>佣金</td>
+            <td>应收渠道</td>
+            <td>成本价</td>
+            <td>应付资源</td>
+            <td>公司</td>
+            <td>损益</td>
+            <td>总收益</td>
+            <td>备注</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.State)</td>
+                <td>@Html.DisplayFor(modelItem => item.Spot)</td>
+                <td>@Html.DisplayFor(modelItem => item.UsedDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.UsedEndDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomrName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                <td>@Html.DisplayFor(modelItem => item.PartnerName)</td>
+                <td>@Html.DisplayFor(modelItem => item.CertificateNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.CheckDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>@Html.DisplayFor(modelItem => item.Commision)</td>
+                <td>@Html.DisplayFor(modelItem => item.Receivables)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cost)</td>
+                <td>@Html.DisplayFor(modelItem => item.Pay)</td>
+                <td>@Html.DisplayFor(modelItem => item.Supplier)</td>
+                <td>@Html.DisplayFor(modelItem => item.PayLost)</td>
+                <td>@Html.DisplayFor(modelItem => item.Incomde)</td>
+                <td>@Html.DisplayFor(modelItem => item.Remark)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

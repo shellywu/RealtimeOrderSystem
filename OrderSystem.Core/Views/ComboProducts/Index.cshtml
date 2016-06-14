@@ -1,0 +1,78 @@
+﻿@model IEnumerable<OrderSystem.Core.Models.ComboProduct>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("新建套餐", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            套餐编码
+        </th>
+        <th>
+            套餐名称
+        </th>
+        <th>
+            有效期
+        </th>
+        <th>
+           套餐售价
+        </th>
+        <th>
+           套餐成本
+        </th>
+        <th>
+           分销商价格
+        </th>
+        <th>
+            结算价
+        </th>
+        <th>
+            合同价
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComboCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComboName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValidStartDate)
+--
+            @Html.DisplayFor(modelItem => item.ValidEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCommision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductSettlement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductContractPrice)
+        </td>
+        <td>
+            @Html.ActionLink("编辑套餐", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("绑定产品", "Index", "ComboProductItems", new {id=item.Id },null) |
+            @Html.ActionLink("删除套餐", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
