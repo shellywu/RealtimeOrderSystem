@@ -8,8 +8,10 @@ namespace OrderSystem.Core.Migrations
         public override void Up()
         {
             DropForeignKey("dbo.Orders", "CompleteUser_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Orders", "CreateUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.Orders", "Customer_Id", "dbo.Customers");
             DropIndex("dbo.Orders", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.Orders", new[] { "CreateUser_Id" });
             DropIndex("dbo.Orders", new[] { "CompleteUser_Id" });
             DropIndex("dbo.Orders", new[] { "Customer_Id" });
             DropColumn("dbo.Orders", "CreateUser_Id");
@@ -25,6 +27,7 @@ namespace OrderSystem.Core.Migrations
         {
             AddColumn("dbo.Orders", "CompleteUser_Id", c => c.String(maxLength: 128));
             DropForeignKey("dbo.Orders", "CustomerId", "dbo.Customers");
+            DropForeignKey("dbo.Orders", "CreateUser_Id", "dbo.AspNetUsers");
             DropIndex("dbo.Orders", new[] { "CustomerId" });
             AlterColumn("dbo.Orders", "CustomerId", c => c.Int());
             RenameColumn(table: "dbo.Orders", name: "CreateUser_Id", newName: "ApplicationUser_Id");
